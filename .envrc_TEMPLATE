@@ -1,0 +1,3 @@
+# This file is a template of the real .envrc to demonstrate the form of that file (which is not committed)
+# Django Secret Key
+export TDRFTT_SECRET_KEY = 'abc..........xyz'
