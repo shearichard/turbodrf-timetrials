@@ -1,4 +1,8 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.db.models import F
+
+from .model_static_data import COUNTRY_ISO_CODES, HIGHEST_POINT_ON_LAND, LOWEST_POINT_ON_LAND
 
 # Create your models here.
 
