@@ -1,17 +1,16 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.db.models import F
+from turbodrf.mixins import TurboDRFMixin
+
 
 from .model_static_data import COUNTRY_ISO_CODES, HIGHEST_POINT_ON_LAND, LOWEST_POINT_ON_LAND
+from .models_utils import validate_not_divisible_by_seven, validate_even
+ 
 
-# Create your models here.
-
-class Country(models.Model):
+class Country(models.Model, TurboDRFMixin):
     '''
     Represents a Country.
-
-    NB: This model will only exist for a short time while
-    some aspects of pytest are sorted out
     '''
 
     COUNTRIES = COUNTRY_ISO_CODES
@@ -28,23 +27,11 @@ class Country(models.Model):
     def __str__(self):
         return self.country_iso_code
 
-
-def validate_not_divisible_by_seven(value):
-    if (value is not None):
-        if value % 7 == 0:
-            raise ValidationError(
-                "%(value)s is divisible by seven",
-                params={"value": value},
-                )
-
-
-def validate_even(value):
-    if (value is not None):
-        if value % 2 != 0:
-            raise ValidationError(
-                "%(value)s is not an even number",
-                params={"value": value},
-                )
+    @classmethod
+    def turbodrf(cls):
+        return {
+            'fields': ['country_iso_code', 'population', 'area_sq_km']
+        }
 
 
 class CityManager(models.Manager):
@@ -55,12 +42,9 @@ class CityManager(models.Manager):
         )
 
 
-class City(models.Model):
+class City(models.Model, TurboDRFMixin):
     '''
     Represents a City.
-
-    NB: This model will only exist for a short time while
-    some aspects of pytest are sorted out
     '''
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     city_name = models.CharField(max_length=255)
@@ -70,11 +54,6 @@ class City(models.Model):
     area_sq_km = models.IntegerField(null=True, blank=True, validators=[validate_not_divisible_by_seven, validate_even])
     elevation_metres = models.IntegerField(null=True, blank=True)
     some_number = models.IntegerField(blank=True, null=True)
-    '''
-    @property
-    def country_iso_code(self):
-        return self.country.country_iso_code if self.country else None
-    '''
 
     objects = CityManager()
 
@@ -82,6 +61,13 @@ class City(models.Model):
     class Meta:
         verbose_name_plural = "Cities"
 
+    @classmethod
+    def turbodrf(cls):
+        return {
+            'fields': {
+                'list': ['country', 'city_name', 'mayor_name', 'date_of_last_mayoral_election', 'population', 'area_sq_km', 'elevation_metres', 'some_number' ]
+            }
+        }
 
     def clean(self):
 
