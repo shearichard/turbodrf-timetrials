@@ -363,12 +363,12 @@
         },
         "turbodrf": {
             "hashes": [
-                "sha256:27e79dc5b4af5a45effcae26d327703eae322d6e0f6377ce30a8f3c93a969593",
-                "sha256:d70e665646f0da017ec89b2b838fd277a2e99a64fe71f536276c77163bf2c6c6"
+                "sha256:28d6dfb1f780d4c613173c607e0e6a6cea846e0604163ba4301142c8ffcff05e",
+                "sha256:b200755caedacf65e694fe1640809f17534843431bba9dcf0490231e09b24011"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8'",
-            "version": "==0.1.11"
+            "version": "==0.1.12"
         },
         "uritemplate": {
             "hashes": [

@@ -10,9 +10,9 @@ django-environ = "*"
 django-extensions = "*"
 whitenoise = "*"
 flask = "*"
-turbodrf = "*"
 django = "*"
 djangorestframework = "*"
+turbodrf = "*"
 
 [dev-packages]
 
