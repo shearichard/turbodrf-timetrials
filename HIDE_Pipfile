@@ -6,11 +6,13 @@ name = "pypi"
 [packages]
 flake8 = "*"
 black = "*"
-whitenoise = "*"
-django = "*"
-turbodrf = "*"
 django-environ = "*"
 django-extensions = "*"
+whitenoise = "*"
+flask = "*"
+django = "*"
+djangorestframework = "*"
+turbodrf = "*"
 
 [dev-packages]
 
