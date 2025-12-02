@@ -10,6 +10,9 @@ turbodrf = "*"
 whitenoise = "*"
 
 [dev-packages]
+black = "*"
+flake8 = "*"
+django-extensions = "*"
 
 [requires]
 python_version = "3.13"
