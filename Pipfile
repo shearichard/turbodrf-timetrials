@@ -7,6 +7,7 @@ name = "pypi"
 django = "*"
 django-environ = "*"
 whitenoise = "*"
+turbodrf = {git = "https://github.com/AlexanderCollins/TurboDRF.git"}
 
 [dev-packages]
 black = "*"
