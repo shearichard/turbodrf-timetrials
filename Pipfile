@@ -4,13 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flake8 = "*"
-black = "*"
-whitenoise = "*"
 django = "*"
-turbodrf = "*"
+black = "*"
 django-environ = "*"
 django-extensions = "*"
+flake8 = "*"
+turbodrf = "*"
+whitenoise = "*"
 
 [dev-packages]
 

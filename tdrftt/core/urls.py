@@ -17,6 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from turbodrf import urls as turbodrf_urls
 
 admin.site.site_title = "TurboDRF TT site admin (DEV)"
 admin.site.site_header = "TurboDRF TT administration"
@@ -26,4 +27,5 @@ admin.site.index_title = "Site administration"
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('turbodrftimetrial/', include('turbodrftimetrial.urls')),
+    path('api-x/', include(turbodrf_urls)),
 ]
