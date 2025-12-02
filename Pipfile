@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 django = "*"
 django-environ = "*"
-turbodrf = "*"
 whitenoise = "*"
 
 [dev-packages]
