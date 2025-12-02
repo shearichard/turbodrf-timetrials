@@ -5,10 +5,7 @@ name = "pypi"
 
 [packages]
 django = "*"
-black = "*"
 django-environ = "*"
-django-extensions = "*"
-flake8 = "*"
 turbodrf = "*"
 whitenoise = "*"
 
