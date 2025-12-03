@@ -5,8 +5,8 @@ from django.test import TestCase
 from django.utils import timezone
 import pytest
 #
-from assidu.models import Country, City 
-from assidu.forms import CityForm 
+from ..models import Country, City 
+from ..forms import CityForm 
 
 # models test
 class CityTest(TestCase):

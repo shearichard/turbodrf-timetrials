@@ -4,8 +4,8 @@ from django.urls import reverse
 from django.test import TestCase
 from django.utils import timezone
 #
-from assidu.models import Country, City 
-from assidu.forms import CountryForm 
+from ..models import Country, City 
+from ..forms import CountryForm 
 
 # models test
 class CountryTest(TestCase):
