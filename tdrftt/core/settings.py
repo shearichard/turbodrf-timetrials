@@ -144,3 +144,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.CustomUser"
 
+# This disables the compatibility wrappers and 
+# makes DRF-YASG use the new renderers.
+#
+# This accomodates the new behaviour of drf-yasg
+# and, in the process, supresses a warning that
+# would otherwise appear in pytest output.
+SWAGGER_USE_COMPAT_RENDERERS = False
+
