@@ -13,6 +13,7 @@ turbodrf = {git = "https://github.com/AlexanderCollins/TurboDRF.git"}
 black = "*"
 flake8 = "*"
 django-extensions = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.13"
