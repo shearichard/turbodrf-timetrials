@@ -19,9 +19,9 @@ from django.contrib import admin
 from django.urls import path, include
 from turbodrf import urls as turbodrf_urls
 
-admin.site.site_title = "TurboDRF TT site admin (DEV)"
-admin.site.site_header = "TurboDRF TT administration"
-admin.site.index_title = "Site administration"
+admin.site.site_title = "TurboDRF TimeTrials Site Admin (DEV)"
+admin.site.site_header = "TurboDRF TimeTrials Admin"
+admin.site.index_title = "Site Administration"
 
 
 urlpatterns = [
