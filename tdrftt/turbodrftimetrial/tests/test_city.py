@@ -14,8 +14,9 @@ class CityTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.AUS = Country.objects.create(country_iso_code="AUS", population=500, area_sq_km=1000)
-        cls.NZL = Country.objects.create(country_iso_code="NZL", population=500, area_sq_km=1000)
-        cls.USA = Country.objects.create(country_iso_code="USA", population=500, area_sq_km=1000)
+        cls.NZL = Country.objects.create(country_iso_code="NZL", population=501, area_sq_km=1001)
+        cls.USA = Country.objects.create(country_iso_code="USA", population=502, area_sq_km=1002)
+        cls.FRA = Country.objects.create(country_iso_code="FRA", population=503, area_sq_km=1003)
 
 
     def create_country(self, 
@@ -79,7 +80,7 @@ class CityTest(TestCase):
         print(lst_country)
         print("test_city_list_view_stripped_down B")
         #
-        self.assertEqual(len(lst_country), 3)
+        self.assertEqual(len(lst_country), 4)
 
     def test_city_list_view_stripped_down(self):
         url = reverse("city-list")
@@ -139,11 +140,30 @@ class CityTest(TestCase):
         self.assertIn(b"Dallas", resp.content)
 
     # Test forms
-    @pytest.mark.skip
+    #@pytest.mark.skip
     def test_valid_form(self):
-        c = City.objects.create(country_iso_code="USA", population=200, area_sq_km=201)
-        data = { "country_iso_code": c.country_iso_code, "population": c.population , "area_sq_km": c.area_sq_km }
-        #data = { "country": self.USA, "population": c.population , "area_sq_km": 10 }
+        c = self.create_city(
+            cntry_parent = self.FRA, 
+            cntry_iso_cde = "FRA",
+            city_nme = "Lyon", 
+            myr_nme = "Marie Facile", 
+            dt_of_lst_myr_elect = None, 
+            pop = "230000", 
+            areasqkm = "12", 
+            elev_m = "600", 
+            sm_nmbr = "25")
+        #
+        data = {
+                "country":c.country, 
+                "city_name":c.city_name, 
+                "mayor_name":c.mayor_name, 
+                "date_of_last_mayoral_election":c.date_of_last_mayoral_election, 
+                "population":c.population, 
+                "area_sq_km":c.area_sq_km, 
+                "elevation_metres":c.elevation_metres, 
+                "some_number":c.some_number 
+            }
+        #
         form = CityForm(data)
         #
         if form.is_valid():
@@ -154,7 +174,7 @@ class CityTest(TestCase):
         self.assertTrue(form.is_valid())
 
 
-    @pytest.mark.skip
+    #@pytest.mark.skip
     def test_invalid_form_1(self):
         #
         data = { "country_iso_code": "AUS", "population": None , "area_sq_km": None }
@@ -169,7 +189,7 @@ class CityTest(TestCase):
         self.assertFalse(form.is_valid())
 
 
-    @pytest.mark.skip
+    #@pytest.mark.skip
     def test_invalid_form_2(self):
         #
         data = { "country_iso_code": "AUS", "population": None , "area_sq_km": 100}
@@ -181,12 +201,32 @@ class CityTest(TestCase):
         )
 
 
-    @pytest.mark.skip
+    #@pytest.mark.skip
     def test_invalid_form_3(self):
+        c = self.create_city(
+            cntry_parent = self.FRA, 
+            cntry_iso_cde = "FRA",
+            city_nme = "Lyon", 
+            myr_nme = "Marie Facile", 
+            dt_of_lst_myr_elect = None, 
+            pop = "230000", 
+            areasqkm = "12", 
+            elev_m = "600", 
+            sm_nmbr = "25")
         #
-        data = { "country_iso_code": "AUS", "population": 100, "area_sq_km": None}
+        data = {
+                "country":c.country, 
+                "city_name":c.city_name, 
+                "mayor_name":c.mayor_name, 
+                "date_of_last_mayoral_election":c.date_of_last_mayoral_election, 
+                "population":c.population, 
+                "elevation_metres":c.elevation_metres, 
+                "some_number":c.some_number 
+            }
         #
         form = CityForm(data)
+        #
+        import pdb;pdb.set_trace()
         #
         self.assertEqual(
             list(form.errors["area_sq_km"]), ["This field is required."]
